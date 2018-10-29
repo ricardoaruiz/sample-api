@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rar.sampleapi.db.domain.Order;
 
@@ -32,13 +33,14 @@ public class OrderImpl implements IOrder {
 
 	@Override
 	public List<? extends IOrderItem> getItems() {
-		final List<IOrderItem> itens = new ArrayList<IOrderItem>();
-		if(hasOrder()) {		
-			order.getItems().forEach(item -> {
-				itens.add(new OrderItemImpl(item));
-			});
+		List<IOrderItem> items = new ArrayList<IOrderItem>();
+		if(hasOrder()) {
+			items = order.getItems().stream()
+				.map( item -> {
+					return new OrderItemImpl(item);
+				}).collect(Collectors.toList());
 		}		
-		return itens;
+		return items;
 	}
 
 	private boolean hasOrder() {

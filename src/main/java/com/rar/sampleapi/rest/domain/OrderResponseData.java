@@ -1,9 +1,9 @@
 package com.rar.sampleapi.rest.domain;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -37,13 +37,12 @@ public class OrderResponseData {
 	}
 	
 	@JsonProperty("itens")
-	public List<OrderItemResponseData> getItems() {
-		List<OrderItemResponseData> items = new ArrayList<OrderItemResponseData>();
-		
-		this.order.getItems().forEach(item -> {
-			items.add(new OrderItemResponseData(item));
-		});
-				
+	public List<OrderItemResponseData> getItems() {		
+		List<OrderItemResponseData> items = this.order.getItems().stream()
+			.map( item -> {
+				return new OrderItemResponseData(item);
+			}).collect(Collectors.toList());
+								
 		return items;
 	}
 	

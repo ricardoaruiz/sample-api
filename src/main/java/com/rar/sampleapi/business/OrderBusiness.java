@@ -1,7 +1,7 @@
 package com.rar.sampleapi.business;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +40,10 @@ public class OrderBusiness {
 	 * @return
 	 */
 	public List<IOrder> listAll() {
-		List<IOrder> orders = new ArrayList<IOrder>();
-		
-		orderService.listAll().forEach( (order) -> {
-			orders.add(new OrderImpl(order));
-		});
+		List<IOrder> orders = orderService.listAll().stream()
+			.map( (order) -> {
+				return new OrderImpl(order);
+			}).collect(Collectors.toList());	
 		
 		return orders;		
 	}
@@ -69,19 +68,26 @@ public class OrderBusiness {
 		}
 		orderService.delete(id);		
 	}
-	
+
+	/**
+	 * Converte um businessDomain para um entityDomain
+	 * @param order
+	 * @return Order
+	 */
 	private Order fromBusinessToDomain(IOrder order) {
 		Order orderEntity = new Order();
 		BeanUtils.copyProperties(order, orderEntity);
 			
 		if(!CollectionUtils.isEmpty(order.getItems())) {
-			orderEntity.setItems(new ArrayList<OrderItem>());
 			
-			order.getItems().forEach( (item) -> {
-				OrderItem itemEntity = new OrderItem();
-				BeanUtils.copyProperties(item, itemEntity);				
-				orderEntity.getItems().add(itemEntity);				
-			});
+			List<OrderItem> orders = order.getItems().stream()
+				.map( tmpOrder -> {
+					OrderItem itemEntity = new OrderItem();
+					BeanUtils.copyProperties(tmpOrder, itemEntity);
+					return itemEntity;
+				}).collect(Collectors.toList());
+			
+			orderEntity.setItems(orders);
 			
 		}
 		return orderEntity;
