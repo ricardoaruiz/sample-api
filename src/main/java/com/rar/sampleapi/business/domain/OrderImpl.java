@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.rar.sampleapi.db.domain.Order;
-import com.rar.sampleapi.db.domain.OrderItem;
 
 public class OrderImpl implements IOrder {
 
@@ -33,15 +32,12 @@ public class OrderImpl implements IOrder {
 
 	@Override
 	public List<? extends IOrderItem> getItems() {
-		List<IOrderItem> itens = null;
-		if(hasOrder()) {
-			itens = new ArrayList<IOrderItem>();
-			
-			for (OrderItem item : order.getItems()) {
-				itens.add(new OrderItemImpl(item));			
-			}
-		}
-		
+		final List<IOrderItem> itens = new ArrayList<IOrderItem>();
+		if(hasOrder()) {		
+			order.getItems().forEach(item -> {
+				itens.add(new OrderItemImpl(item));
+			});
+		}		
 		return itens;
 	}
 

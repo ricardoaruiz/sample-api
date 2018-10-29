@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.rar.sampleapi.business.domain.IOrder;
-import com.rar.sampleapi.business.domain.IOrderItem;
 
 @JsonPropertyOrder({ "titulo", "criacao", "valor", "itens" })
 public class OrderResponseData {
@@ -41,10 +40,10 @@ public class OrderResponseData {
 	public List<OrderItemResponseData> getItems() {
 		List<OrderItemResponseData> items = new ArrayList<OrderItemResponseData>();
 		
-		for (IOrderItem item : this.order.getItems()) {
+		this.order.getItems().forEach(item -> {
 			items.add(new OrderItemResponseData(item));
-		}
-		
+		});
+				
 		return items;
 	}
 	

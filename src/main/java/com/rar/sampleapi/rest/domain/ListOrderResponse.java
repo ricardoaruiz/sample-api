@@ -9,10 +9,10 @@ public class ListOrderResponse {
 		
 	private List<OrderResponseData> orders = new ArrayList<OrderResponseData>();
 		
-	public ListOrderResponse(List<IOrder> orders) {	
-		for (IOrder order : orders) {
+	public ListOrderResponse(List<IOrder> orders) {
+		orders.forEach(order -> {
 			this.orders.add(new OrderResponseData(order));
-		}
+		});
 	}
 
 	public List<OrderResponseData> getOrders() {

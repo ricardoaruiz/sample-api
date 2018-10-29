@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import com.rar.sampleapi.business.domain.IOrder;
-import com.rar.sampleapi.business.domain.IOrderItem;
 import com.rar.sampleapi.business.domain.OrderImpl;
 import com.rar.sampleapi.business.exception.OrderAlreadyExistsException;
 import com.rar.sampleapi.business.exception.OrderNotFoundException;
@@ -42,9 +41,11 @@ public class OrderBusiness {
 	 */
 	public List<IOrder> listAll() {
 		List<IOrder> orders = new ArrayList<IOrder>();
-		for (Order order : orderService.listAll()) {
+		
+		orderService.listAll().forEach( (order) -> {
 			orders.add(new OrderImpl(order));
-		}
+		});
+		
 		return orders;		
 	}
 
@@ -74,12 +75,14 @@ public class OrderBusiness {
 		BeanUtils.copyProperties(order, orderEntity);
 			
 		if(!CollectionUtils.isEmpty(order.getItems())) {
-			orderEntity.setItems(new ArrayList<OrderItem>());		
-			for(IOrderItem item : order.getItems()) {
+			orderEntity.setItems(new ArrayList<OrderItem>());
+			
+			order.getItems().forEach( (item) -> {
 				OrderItem itemEntity = new OrderItem();
 				BeanUtils.copyProperties(item, itemEntity);				
-				orderEntity.getItems().add(itemEntity);
-			}
+				orderEntity.getItems().add(itemEntity);				
+			});
+			
 		}
 		return orderEntity;
 	}

@@ -13,8 +13,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rar.sampleapi.business.domain.IOrder;
 import com.rar.sampleapi.business.domain.IOrderItem;
 import com.rar.sampleapi.rest.validation.ValidationMessageKeyEnum;

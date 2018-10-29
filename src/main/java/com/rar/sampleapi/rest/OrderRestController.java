@@ -30,7 +30,7 @@ import com.rar.sampleapi.rest.domain.ListOrderResponse;
  *
  */
 @RestController()
-@RequestMapping("/pedido")
+@RequestMapping("/order")
 public class OrderRestController {
 
 	@Autowired
