@@ -13,11 +13,11 @@ import com.rar.sampleapi.business.domain.IOrder;
 import com.rar.sampleapi.business.domain.IOrderItem;
 
 @JsonPropertyOrder({ "titulo", "criacao", "valor", "itens" })
-public class ListOrderResponseData {
+public class OrderResponseData {
 
 	private IOrder order;
 
-	public ListOrderResponseData(IOrder pedido) {
+	public OrderResponseData(IOrder pedido) {
 		this.order = pedido;
 	}
 
@@ -38,11 +38,11 @@ public class ListOrderResponseData {
 	}
 	
 	@JsonProperty("itens")
-	public List<ListOrderItemResponseData> getItems() {
-		List<ListOrderItemResponseData> items = new ArrayList<ListOrderItemResponseData>();
+	public List<OrderItemResponseData> getItems() {
+		List<OrderItemResponseData> items = new ArrayList<OrderItemResponseData>();
 		
 		for (IOrderItem item : this.order.getItems()) {
-			items.add(new ListOrderItemResponseData(item));
+			items.add(new OrderItemResponseData(item));
 		}
 		
 		return items;

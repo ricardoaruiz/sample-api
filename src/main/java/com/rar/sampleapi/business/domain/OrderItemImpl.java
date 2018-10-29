@@ -14,22 +14,26 @@ public class OrderItemImpl implements IOrderItem {
 
 	@Override
 	public String getDescription() {
-		return this.item.getDescription();
+		return hasItem() ? this.item.getDescription() : null;
 	}
 
 	@Override
 	public int getQuantity() {
-		return this.item.getQuantity();
+		return hasItem() ? this.item.getQuantity() : 0;
 	}
 
 	@Override
 	public BigDecimal getAmount() {
-		return this.item.getAmount();
+		return hasItem() ? this.item.getAmount() : null;
 	}
 
 	@Override
 	public BigDecimal getTotalAmount() {
-		return this.item.getTotalAmount();
+		return hasItem() ? this.item.getTotalAmount() : null;
+	}
+	
+	private boolean hasItem() {
+		return this.item != null;
 	}
 
 }

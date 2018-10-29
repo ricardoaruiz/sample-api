@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.rar.sampleapi.business.domain.IOrderItem;
 
 @JsonPropertyOrder({ "descricao", "quantidade", "valor", "total" })
-public class ListOrderItemResponseData {
+public class OrderItemResponseData {
 
 	private IOrderItem item;
 
-	public ListOrderItemResponseData(IOrderItem item) {
+	public OrderItemResponseData(IOrderItem item) {
 		this.item = item;
 	}
 	

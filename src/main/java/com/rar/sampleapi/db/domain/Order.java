@@ -39,7 +39,7 @@ public class Order implements Serializable{
 	
 	private BigDecimal amount;
 		
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="pedido_id")
 	private List<OrderItem> items;
 

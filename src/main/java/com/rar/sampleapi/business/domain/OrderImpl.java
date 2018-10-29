@@ -18,28 +18,34 @@ public class OrderImpl implements IOrder {
 	
 	@Override
 	public String getTitle() {
-		return this.order.getTitle();
+		return hasOrder() ? this.order.getTitle() : "";
 	}
 	
 	@Override
 	public Date getCreateAt() {
-		return this.order.getCreateAt();
+		return hasOrder() ? this.order.getCreateAt() : null;
 	}
 	
 	@Override
 	public BigDecimal getAmount() {
-		return this.order.getAmount();
+		return hasOrder() ? this.order.getAmount() : null;
 	}
 
 	@Override
 	public List<? extends IOrderItem> getItems() {
-		List<IOrderItem> itens = new ArrayList<IOrderItem>();
-		
-		for (OrderItem item : order.getItems()) {
-			itens.add(new OrderItemImpl(item));			
+		List<IOrderItem> itens = null;
+		if(hasOrder()) {
+			itens = new ArrayList<IOrderItem>();
+			
+			for (OrderItem item : order.getItems()) {
+				itens.add(new OrderItemImpl(item));			
+			}
 		}
 		
 		return itens;
 	}
-	
+
+	private boolean hasOrder() {
+		return this.order != null;
+	}
 }

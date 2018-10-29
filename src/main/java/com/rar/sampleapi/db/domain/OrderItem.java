@@ -35,7 +35,7 @@ public class OrderItem implements Serializable {
 	
 	private BigDecimal totalAmount;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="pedido_id")
 	private Order order;
 	
