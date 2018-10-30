@@ -34,8 +34,11 @@ public class Order implements Serializable{
 	
 	private String title;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date creatAt;
+	@Temporal(TemporalType.DATE)
+	private Date createAt;
+	
+	@Temporal(TemporalType.DATE)
+	private Date revisionAt;
 	
 	private BigDecimal amount;
 		
@@ -55,31 +58,39 @@ public class Order implements Serializable{
 		return title;
 	}
 
-	public void setTitle(String titulo) {
-		this.title = titulo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Date getCreateAt() {
-		return creatAt;
+		return createAt;
 	}
 
-	public void setCreateAt(Date criacao) {
-		this.creatAt = criacao;
+	public void setCreateAt(Date creatAt) {
+		this.createAt = creatAt;
+	}
+
+	public Date getRevisionAt() {
+		return revisionAt;
+	}
+
+	public void setRevisionAt(Date revisionAt) {
+		this.revisionAt = revisionAt;
 	}
 
 	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(BigDecimal valor) {
-		this.amount = valor;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 	public List<OrderItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<OrderItem> itens) {
-		this.items = itens;
-	}	
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
+	}
 }

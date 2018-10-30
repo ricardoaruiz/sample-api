@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.rar.sampleapi.business.domain.IOrder;
 
-@JsonPropertyOrder({ "titulo", "criacao", "valor", "itens" })
+@JsonPropertyOrder({ "titulo", "criacao", "revisao", "valor", "itens" })
 public class OrderResponseData {
 
 	private IOrder order;
@@ -29,6 +29,12 @@ public class OrderResponseData {
 	@JsonFormat(shape=Shape.STRING, pattern="dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
 	public Date getCreateAt() {
 		return this.order.getCreateAt();
+	}
+
+	@JsonProperty("revisao")
+	@JsonFormat(shape=Shape.STRING, pattern="dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
+	public Date getRevisionAt() {
+		return this.order.getRevisionAt();
 	}
 	
 	@JsonProperty("valor")

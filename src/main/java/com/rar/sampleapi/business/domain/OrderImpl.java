@@ -27,6 +27,11 @@ public class OrderImpl implements IOrder {
 	}
 	
 	@Override
+	public Date getRevisionAt() {
+		return hasOrder() ? this.order.getRevisionAt() : null;
+	}
+	
+	@Override
 	public BigDecimal getAmount() {
 		return hasOrder() ? this.order.getAmount() : null;
 	}

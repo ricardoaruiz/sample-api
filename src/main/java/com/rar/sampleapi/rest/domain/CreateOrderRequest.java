@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -34,6 +35,11 @@ public class CreateOrderRequest implements IOrder {
 	@NotNull(message=ValidationMessageKeyEnum.Constants.REQUIRED_FIELD)
 	private Date createAt;
 	
+	@JsonProperty("revisao")
+	@JsonFormat(shape=Shape.STRING, pattern="dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
+	@NotNull(message=ValidationMessageKeyEnum.Constants.REQUIRED_FIELD)
+	private Date revisionAt;
+	
 	@Valid
 	@JsonProperty("itens")
 	@NotEmpty(message=ValidationMessageKeyEnum.Constants.ORDER_ITEMS_REQUIRED)
@@ -50,6 +56,11 @@ public class CreateOrderRequest implements IOrder {
 	}
 	
 	@Override
+	public Date getRevisionAt() {
+		return this.revisionAt;
+	}	
+	
+	@Override
 	public BigDecimal getAmount() {
 		BigDecimal total = BigDecimal.ZERO;
 		for (CreateOrderItemRequestData item : items) {
@@ -61,6 +72,11 @@ public class CreateOrderRequest implements IOrder {
 	@Override
 	public List<? extends IOrderItem> getItems() {
 		return this.items;
+	}
+	
+	@AssertTrue(message=ValidationMessageKeyEnum.Constants.INVALID_CREATE_REVISION_DATE)
+	private boolean isCreateAndRevisionDateValid() {
+		return this.createAt.compareTo(this.revisionAt) < 0;
 	}
 
 }

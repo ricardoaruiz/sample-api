@@ -30,7 +30,8 @@ public class OrderBusiness {
 	public void create(IOrder pedido) {
 		if (orderService.existsByTitulo(pedido.getTitle())) {
 			throw new OrderAlreadyExistsException(
-					ValidationMessageKeyEnum.ORDER_ALREADY_EXISTS.getKey()); 
+					ValidationMessageKeyEnum.ORDER_ALREADY_EXISTS.getKey(),
+					pedido.getTitle()); 
 		}			
 		orderService.create(fromBusinessToDomain(pedido));
 	}

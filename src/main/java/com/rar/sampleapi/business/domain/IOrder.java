@@ -10,6 +10,8 @@ public interface IOrder {
 	
 	Date getCreateAt();
 	
+	Date getRevisionAt();
+	
 	BigDecimal getAmount();
 	
 	List<? extends IOrderItem> getItems();

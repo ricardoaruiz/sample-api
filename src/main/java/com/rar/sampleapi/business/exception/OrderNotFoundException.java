@@ -8,21 +8,12 @@ public class OrderNotFoundException extends BusinessException {
 		super();
 	}
 
-	public OrderNotFoundException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
+	public OrderNotFoundException(String message, Object... args) {
+		super(message, args);
 	}
 
-	public OrderNotFoundException(String message, Throwable cause) {
-		super(message, cause);
+	public OrderNotFoundException(String message, Throwable cause, Object... args) {
+		super(message, cause, args);
 	}
 
-	public OrderNotFoundException(String message) {
-		super(message);
-	}
-
-	public OrderNotFoundException(Throwable cause) {
-		super(cause);
-	}
-	
 }
