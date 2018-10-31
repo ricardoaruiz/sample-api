@@ -1,0 +1,18 @@
+{
+  "titulo" : "Pedido 01",
+  "criacao" : "15-05-2018",
+  "revisao" : "164-05-2018",
+  "itens" : 
+  [
+    {
+      "descricao" : "Item 01",
+      "quantidade" : 10,
+      "valor" : 50.22
+    },
+    {
+      "descricao" : "Item 02",
+      "quantidade" : 50,
+      "valor" : 9.31
+    }    
+  ]
+}

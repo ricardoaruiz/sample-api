@@ -38,6 +38,7 @@ public class OrderResponseData {
 	}
 	
 	@JsonProperty("valor")
+	@JsonFormat (shape=JsonFormat.Shape.STRING)
 	public BigDecimal getAmount() {
 		return this.order.getAmount();
 	}

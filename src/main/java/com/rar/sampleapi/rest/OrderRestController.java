@@ -73,7 +73,7 @@ public class OrderRestController {
 	 * @return Void
 	 */
 	@PostMapping
-	public ResponseEntity<Void> create(@RequestBody @Valid CreateOrderRequest pedido) {	
+	public ResponseEntity<Void> create(@RequestBody @Valid CreateOrderRequest pedido) {
 		
 		orderBusiness.create(pedido);		
 		return ResponseEntity.status(HttpStatus.CREATED).build();

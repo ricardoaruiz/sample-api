@@ -2,6 +2,7 @@ package com.rar.sampleapi.rest.domain;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.rar.sampleapi.business.domain.IOrderItem;
@@ -26,11 +27,13 @@ public class OrderItemResponseData {
 	}
 	
 	@JsonProperty("valor")
+	@JsonFormat (shape=JsonFormat.Shape.STRING)
 	public BigDecimal getAmount() {
 		return this.item.getAmount();
 	}
 	
 	@JsonProperty("total")
+	@JsonFormat (shape=JsonFormat.Shape.STRING)
 	public BigDecimal getTotalAmount() {
 		return this.item.getTotalAmount();
 	}
