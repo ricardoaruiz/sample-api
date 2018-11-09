@@ -16,8 +16,7 @@ pipeline {
                 sh 'rm -rf /home/ralmendro/mgmt/teste-build-jenkins/sample-api.jar'
                 sh 'cp build/libs/sample-api-0.0.1-SNAPSHOT.jar  /home/ralmendro/mgmt/teste-build-jenkins/sample-api.jar'
                 dir('/home/ralmendro/mgmt/teste-build-jenkins') {
-                    sh 'pwd'
-                    sh './run.sh'
+                    sh 'java -jar sample-api.jar'
                 }
             }
         }
