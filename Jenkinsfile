@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                
                 echo 'Codigo baixado em: '
                 sh 'pwd'
                 
@@ -16,6 +17,12 @@ pipeline {
                 sh 'cp build/libs/sample-api-0.0.1-SNAPSHOT.jar  /home/ralmendro/mgmt/teste-build-jenkins/sample-api.jar'
                 sh '/home/ralmendro/mgmt/teste-build-jenkins/run.sh'
             }
+        }
+    }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
         }
     }
 }
