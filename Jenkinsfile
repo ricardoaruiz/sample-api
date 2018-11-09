@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'pwd'
+                sh 'echo "codigo baixado em: " pwd'
+                sh './gradlew build'
             }
         }
     }
