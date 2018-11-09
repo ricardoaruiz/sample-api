@@ -11,9 +11,11 @@ pipeline {
             }
         }
         stage('Deploy') {
-            sh 'rm -rf /home/ralmendro/mgmt/teste-build-jenkins/sample-api.jar'
-            sh 'cp build/libs/sample-api-0.0.1-SNAPSHOT.jar  /home/ralmendro/mgmt/teste-build-jenkins/sample-api.jar'
-            sh 'java -jar sample-api.jar'
+            steps {
+                sh 'rm -rf /home/ralmendro/mgmt/teste-build-jenkins/sample-api.jar'
+                sh 'cp build/libs/sample-api-0.0.1-SNAPSHOT.jar  /home/ralmendro/mgmt/teste-build-jenkins/sample-api.jar'
+                sh 'java -jar sample-api.jar'
+            }
         }
     }
 }
